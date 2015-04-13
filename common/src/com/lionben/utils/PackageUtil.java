@@ -19,6 +19,7 @@ public class PackageUtil {
         for(int i=0;i<packageInfo.size;i++){
             bytes[5+i] = packageInfo.data[i] ;
         }
+        System.out.println("flag : "+packageInfo.flag+ " size : "+packageInfo.size+"  client Info : "+new String(packageInfo.data,0,packageInfo.size));
         return bytes ;
     }
 }

@@ -10,16 +10,19 @@ import org.apache.mina.core.session.IoSession;
  * Created by lionbenx.
  */
 public class MinaClientHandler extends IoHandlerAdapter{
+
+    private IoSession ioSession ;
     public MinaClientHandler() {
         super();
     }
 
     public void sessionClosed(IoSession session) throws Exception {
+        System.out.println("client close !") ;
         super.sessionClosed(session);
     }
 
     public void sessionOpened(IoSession session) throws Exception {
-        super.sessionOpened(session);
+        this.messageSent(session,null);
     }
 
     /**
@@ -40,11 +43,12 @@ public class MinaClientHandler extends IoHandlerAdapter{
      */
     public void messageSent(IoSession session, Object message) throws Exception {
         Package packageInfo = new Package() ;
-        final String sendInfo = "我是客户端" ;
+        final String sendInfo = "i am client " ;
         packageInfo.flag = 0x0101 ;
         packageInfo.options = 0x01 ;
         packageInfo.size = (short)sendInfo.getBytes().length ;
         packageInfo.data = sendInfo.getBytes() ;
+        System.out.println(sendInfo) ;
         //发送消息到客户端
         session.write(IoBuffer.wrap(PackageUtil.packageToBytes(packageInfo))) ;
     }

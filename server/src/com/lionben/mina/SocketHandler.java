@@ -9,24 +9,23 @@ import org.apache.mina.core.session.IoSession;
 
 public class SocketHandler extends IoHandlerAdapter {
 
-    private Logger logger = Logger.getLogger(SocketHandler.class);
 
     @Override
     public void sessionCreated(IoSession session) throws Exception {
-        logger.debug("session create " + session.getId());
+        System.out.println("session create " + session.getId());
         super.sessionCreated(session);
     }
 
     @Override
     public void sessionClosed(IoSession session) throws Exception {
-        logger.debug("close session count:" + session.getId());
+        System.out.println("close session count:" + session.getId());
         super.sessionClosed(session);
     }
 
     @Override
     public void exceptionCaught(IoSession session, Throwable cause)
             throws Exception {
-        logger.debug("package caught:" + session.getId());
+        System.out.println("package caught:" + session.getId());
         super.exceptionCaught(session, cause);
     }
 
@@ -38,6 +37,7 @@ public class SocketHandler extends IoHandlerAdapter {
      */
     @Override
     public void messageReceived(IoSession session, Object message) {
+        System.out.println("get message") ;
         try {
             if (session == null || session.isClosing())
                 return;
@@ -65,6 +65,7 @@ public class SocketHandler extends IoHandlerAdapter {
      * @param header
      */
     public void preProcessPackage(Package header) {
+
         if ((header.options & (byte) 0x10) == 0x10)
             //TODO:解密
 
@@ -79,7 +80,6 @@ public class SocketHandler extends IoHandlerAdapter {
      * @throws RuntimeException
      */
     public void packageDispatch(Package header) throws Exception, RuntimeException {
-        System.out.println("处理消息");
         //根据各种标志执行对应的业务逻辑
         switch (header.flag) {
             case 0x0108:
@@ -97,7 +97,8 @@ public class SocketHandler extends IoHandlerAdapter {
      * @param header
      */
     public void postProcessPackage(Package header) {
-
+        String clientInfo = new String(header.data,0,header.data.length) ;
+        System.out.println("flag : "+header.flag+ " size : "+header.size+"  client Info : "+clientInfo);
     }
 
 

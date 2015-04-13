@@ -14,6 +14,7 @@ public class Server extends BaseConfig {
     public static void main(String[] args){
         System.out.println("start !");
         try {
+            initSettings();
             MinaSetting setting = getSetting();
             SocketServer server = new SocketServer(setting);
         }catch (Exception e){

@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 public class SocketServer {
 
-    private static NioSocketAcceptor acceptor;
+    private NioSocketAcceptor acceptor;
 
     public SocketServer(MinaSetting minaSetting) throws IOException {
         //线程池

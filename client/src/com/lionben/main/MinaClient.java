@@ -14,9 +14,10 @@ import java.net.InetSocketAddress;
  * Created by lionbenx
  */
 public class MinaClient{
-    private static final int bindPort=8800;
+    private static final int bindPort=8808;
 
     public static void main(String[] args)throws Exception{
+        System.out.println("client start !") ;
         // 创建一个socket连接
         NioSocketConnector connector=new NioSocketConnector();
         // 获取过滤器链
@@ -38,6 +39,7 @@ public class MinaClient{
         cf.awaitUninterruptibly();
         cf.getSession().getCloseFuture().awaitUninterruptibly();
         connector.dispose();
+        System.out.println("client end !") ;
 
     }
 
