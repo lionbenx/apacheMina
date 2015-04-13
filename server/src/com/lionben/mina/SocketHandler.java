@@ -97,7 +97,7 @@ public class SocketHandler extends IoHandlerAdapter {
      * @param header
      */
     public void postProcessPackage(Package header) {
-        String clientInfo = new String(header.data,0,header.data.length) ;
+        String clientInfo = new String(header.data,0,header.size) ;
         System.out.println("flag : "+header.flag+ " size : "+header.size+"  client Info : "+clientInfo);
     }
 

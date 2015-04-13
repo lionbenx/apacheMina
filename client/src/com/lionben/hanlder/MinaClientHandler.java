@@ -42,6 +42,8 @@ public class MinaClientHandler extends IoHandlerAdapter{
      * @throws Exception
      */
     public void messageSent(IoSession session, Object message) throws Exception {
+        //避免线程发送信息太快
+        Thread.sleep(1);
         Package packageInfo = new Package() ;
         final String sendInfo = "i am client " ;
         packageInfo.flag = 0x0101 ;
