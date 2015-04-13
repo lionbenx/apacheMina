@@ -1,7 +1,5 @@
 package com.lionben.pojo;
 
-import com.lionben.utils.SettingsUtils;
-
 /**
  * Created by lionben .
  */

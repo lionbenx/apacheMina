@@ -22,6 +22,5 @@ public class Global {
 	public static void setDatasource(DataSource datasource) {
 		Global.datasource = datasource;
 	}
-	
-	
+
 }
